@@ -1,4 +1,5 @@
 name: Python FastAPI App
+run-name: ${{ github.actor }}
 
 on: [push]
 
