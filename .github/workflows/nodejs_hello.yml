@@ -18,13 +18,13 @@ jobs:
         with:
           node-version: "18.x" # 원하는 Node.js 버전 설정
 
-      - name: Cache Node Modules
-        uses: actions/cache@v3
-        with:
-          path: nodejs/hello/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # - name: Cache Node Modules
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: nodejs/hello/node_modules
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
       - name: Install Dependencies
         run: |
