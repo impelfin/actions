@@ -38,10 +38,10 @@ jobs:
           pm2 start app.js --name "hello-app"  # pm2로 앱 실행
           pm2 save  # 프로세스 상태 저장
 
-      - name: Keep PM2 Alive
-        run: |
-          pm2 list  # pm2 프로세스 상태 확인
-          sleep infinity  # GitHub Actions가 종료되지 않도록 유지
+      # - name: Keep PM2 Alive
+      #   run: |
+      #     pm2 list  # pm2 프로세스 상태 확인
+      #     sleep infinity  # GitHub Actions가 종료되지 않도록 유지
 
       - name: Stop App with PM2
         run: |
