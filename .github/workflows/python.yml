@@ -21,8 +21,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Start Uvicorn Server
-        run: uvicorn app:app --host 0.0.0.0 --port 3000 --reload &
-        timeout-minutes: 1
+        run: |
+          cd python/fastapi
+          uvicorn app:app --host 0.0.0.0 --port 3000 --reload &
+          timeout-minutes: 1
 
       - name: Stop Uvicorn Server
-        run: pkill -f uvicorn
+        run: |
+          cd python/fastapi
+          pkill -f uvicorn
