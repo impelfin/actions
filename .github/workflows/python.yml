@@ -20,7 +20,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Start App and Stop after 30s
-        run: |
-          cd python/fastapi
-          timeout 30s uvicorn app:app --host 0.0.0.0 --port 3000 --reload
+      - name: Start Uvicorn Server
+        run: uvicorn app:app --host 0.0.0.0 --port 3000 --reload &
+        timeout-minutes: 1
+
+      - name: Run Tests
+        run: pytest tests/
+
+      - name: Stop Uvicorn Server
+        run: pkill -f uvicorn
