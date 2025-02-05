@@ -19,11 +19,8 @@ jobs:
           cd python/fastapi
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Start App
+
+      - name: Start App and Stop after 10ms
         run: |
           cd python/fastapi
-          uvicorn app:app --host 0.0.0.0 --port 3000 --reload
-
-      - name: Stop Uvicorn Server
-        run: |
-          pkill -f uvicorn
+          timeout 10uvicorn app:app --host 0.0.0.0 --port 3000 --reload
