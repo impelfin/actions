@@ -1,5 +1,5 @@
 name: Node.js App
-run-name: ${{ github.actions }}
+run-name: ${{ github.workflow }}
 
 on:
   push:
