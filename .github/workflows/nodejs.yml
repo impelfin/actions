@@ -33,6 +33,7 @@ jobs:
       - name: Check PM2 Status
         run: |
           pm2 list  # pm2 프로세스 상태 확인
+        timeout-minutes: 10
 
       - name: Stop App with PM2
         run: |
