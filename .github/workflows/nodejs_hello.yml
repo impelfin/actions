@@ -1,4 +1,4 @@
-name: Node.js App
+name: Node.js Hello App
 
 on:
   push:
@@ -42,3 +42,9 @@ jobs:
         run: |
           pm2 list  # pm2 프로세스 상태 확인
           sleep infinity  # GitHub Actions가 종료되지 않도록 유지
+
+      - name: Stop App with PM2
+        run: |
+          pm2 list  # pm2 프로세스 상태 확인
+          pm2 stop "hello-app"  # pm2로 앱 종료
+          pm2 delete "hello-app"  # pm2로 앱 삭제
