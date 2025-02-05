@@ -18,12 +18,27 @@ jobs:
         with:
           node-version: "18.x" # 원하는 Node.js 버전 설정
 
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: nodejs/hello/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: |
           cd nodejs/hello
           npm install
+          npm install pm2 -g  # pm2 전역 설치
 
-      - name: Run App
+      - name: Run App with PM2
         run: |
           cd nodejs/hello
-          node app.js
+          pm2 start app.js --name "hello-app"  # pm2로 앱 실행
+          pm2 save  # 프로세스 상태 저장
+
+      - name: Keep PM2 Alive
+        run: |
+          pm2 list  # pm2 프로세스 상태 확인
+          sleep infinity  # GitHub Actions가 종료되지 않도록 유지
