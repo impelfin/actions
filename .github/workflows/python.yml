@@ -19,7 +19,11 @@ jobs:
           cd python/fastapi
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run App
+      - name: Start App
         run: |
           cd python/fastapi
           uvicorn app:app --host 0.0.0.0 --port 3000 --reload
+
+      - name: Stop Uvicorn Server
+        run: |
+          pkill -f uvicorn
