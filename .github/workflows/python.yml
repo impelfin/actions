@@ -23,4 +23,5 @@ jobs:
       - name: Start App and Stop after 10ms
         run: |
           cd python/fastapi
-          timeout 10 uvicorn app:app --host 0.0.0.0 --port 3000 --reload
+          uvicorn app:app --host 0.0.0.0 --port 3000 --reload
+          timeout 10 pkill -f "uvicon app:app"
