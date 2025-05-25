@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18.x" # 원하는 Node.js 버전 설정
+          node-version: "18.20.0" # 원하는 Node.js 버전 설정
 
       - name: Install Dependencies
         run: |
