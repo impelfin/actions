@@ -4,21 +4,23 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm use node
 
-cd actions
+cd /work/actions
 
 git pull;
 
 SRC=/work/actions/nodejs/hello
-DEST=/$HOME/deploy
+DEST=$HOME/deploy
 
 rm -rf $DEST
 mkdir -p $DEST
-cp -r $SRC/* $DEST
+cp -r $SRC $DEST
 
 cd $DEST/hello
 
 source ~/.bashrc
 
 npm install
+
+npm install -g pm2
 
 pm2 restart all
