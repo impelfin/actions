@@ -38,13 +38,6 @@ jobs:
         push: true
         tags: ${{ env.APP_DOCKER_IMAGE_NAME }}:latest
 
-    # - name: Configure AWS Credentials
-    #   uses: aws-actions/configure-aws-credentials@v4
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: ${{ env.AWS_REGION }}
-
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
@@ -56,10 +49,10 @@ jobs:
           echo "--- Pulling Latest App Image ---"
           docker pull ${{ env.APP_DOCKER_IMAGE_NAME }}:latest
           echo "--- Stopping and Removing Old App Container ---"
-          docker stop mvc-app || true # 컨테이너 이름으로 변경
-          docker rm mvc-app || true # 컨테이너 이름으로 변경
+          docker stop restful_app || true 
+          docker rm restful_app || true 
           echo "--- Running New App Container ---"
-          docker run -d --restart always --name mvc-app -p 8000:8000 ${{ env.APP_DOCKER_IMAGE_NAME }}:latest
+          docker run -d --restart always --name restful_app -p 8000:8000 ${{ env.APP_DOCKER_IMAGE_NAME }}:latest
           
           echo "--- Cleaning up unused Docker images ---"
           docker system prune -f
