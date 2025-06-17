@@ -4,9 +4,10 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install --production 
+RUN npm install -g pm2
 
 COPY . .
 
 EXPOSE 8000 
 
-CMD ["node", "app.js"] 
+CMD ["pm2", "start", "app.js"] 

@@ -9,7 +9,7 @@ const router = express.Router();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 8000)
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -21,5 +21,5 @@ var restful = require('./routes/restful.js');
 app.use('/', restful);
 
 app.listen(app.get('port'), () =>{
-	console.log('3000 Port : 서버 실행 중')
+	console.log('8000 Port : 서버 실행 중')
 });
